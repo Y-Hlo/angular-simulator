@@ -30,8 +30,21 @@ function sum(a: number, b: number): number {
 // 8. Создание функции для форматирования строки на основе переданного текстового режима
 
 function textFormatFunc(text: string, format: 'uppercase' | 'lowercase' | 'capitalize'): string {
-  return text;
+  if (format === 'uppercase') {
+    return text.toUpperCase()
+  }
+  if (format === 'lowercase') {
+    return text.toLowerCase()
+  }
+  if (format === 'capitalize') {
+    return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase()
+  }
+  return text
 }
+
+console.log(textFormatFunc('пРиВеТ, ТоВаГиЩи!', 'uppercase'))
+console.log(textFormatFunc('пРиВеТ, ТоВаГиЩи!', 'lowercase'))
+console.log(textFormatFunc('пРиВеТ, ТоВаГиЩи!', 'capitalize'))
 
 // 9. Создание функции для удаления заданного символа из строки
 
