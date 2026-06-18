@@ -1,3 +1,6 @@
+// 2.2. Подключения файла "training.ts"
+
+import './training';
 import { Component } from '@angular/core';
 
 @Component({
