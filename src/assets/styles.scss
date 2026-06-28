@@ -1,0 +1,44 @@
+@use './fonts';
+@use './normalize';
+
+* {
+  font-family: 'Nunito Sans';
+}
+
+.container {
+  width: 1180px;
+}
+
+:root {
+  --primary-color: #18121E;
+  --white-color: #FDFDFD;
+  --secondary-color: #F2BE22;
+}
+
+.dark-text {
+  color: var(--primary-color);
+}
+
+.white-text {
+  color: var(--white-color);
+}
+
+.accent-text {
+  color: var(--secondary-color);
+}
+
+// div {
+//   outline: 1px solid rgb(5, 209, 255) !important;
+// }
+
+// nav {
+//   outline: 1px solid rgb(5, 209, 255) !important;
+// }
+
+// form {
+//   outline: 1px solid rgb(5, 209, 255) !important;
+// }
+
+// span {
+//   outline: 1px solid rgb(5, 209, 255) !important;
+// }
