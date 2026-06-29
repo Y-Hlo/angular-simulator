@@ -3,6 +3,12 @@
 export class Collection<T> {
   items: T[] = [];
 
+// 15. п 5.6. Конструктор для инициализации коллекции данными
+
+constructor(initialItems: T[]) {
+  this.items = initialItems;
+}
+
 // 15. п 5.1. Метод получения всех элементов коллекции
 
   getAllItems(): T[] {
