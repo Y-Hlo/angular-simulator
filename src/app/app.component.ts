@@ -43,11 +43,10 @@ export class AppComponent {
     localStorage.setItem('visitCount', String(currentVisits + 1));
   }
 
-// 15. п 5.6. Реализация универсальной коллекции с двумя разными типами данных
+// 15. п 5.7. Создание коллекций с источниками данных
 
-stringCollection = new Collection<string>();
+  stringCollection = new Collection<string>(['apple', 'orange', 'cherry']);
 
-numberCollection = new Collection<number>();
+  numberCollection = new Collection<number>([130, 120, 450]);
 
 }
-
