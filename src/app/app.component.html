@@ -1,1 +1,54 @@
-<h1 style="display: flex; justify-content: center; font-family: sans-serif;">NGX SIMULATOR</h1>
+<!-- 15. п 1. Верстка шапки и первого блока с макета -->
+
+<header>
+  <div class="header white-text">
+    <div class="container header-container">
+      <div class="logo-wrapper">
+        <img src="/images/company-icon.svg" alt="mountains">
+        <span>{{ companyName }}</span>
+      </div>
+      <nav class="nav-wrapper">
+        <a>Главная</a>
+        <a>Про гида</a>
+        <a>Программа тура</a>
+        <a>Стоимость</a>
+        <a>Блог</a>
+        <a>Контакты</a>
+      </nav>
+      <button class="consultation-button">Консультация</button>
+    </div>
+  </div>
+</header>
+<section class="hero">
+  <div class="container hero-content-wrapper">
+    <div class="container title-wrapper">
+      <h1 class="title-text white-text">Насладись прогулкой в горах <br> с командой единомышленников</h1>
+    </div>  
+    <form class="search-form white-text">
+      <div class="search-form-inner">
+        <div class="input-box">
+          <label class="input-field">
+            <input type="text" placeholder="Локация для тура" readonly>
+            <span class="icon arrow-icon"></span>
+          </label>
+          <span class="input-sub">выберите из списка</span>
+        </div>
+        <div class="input-box">
+          <label class="input-field">
+            <input type="text" placeholder="Дата похода" readonly>
+            <span class="icon date-icon"></span>
+          </label>
+          <span class="input-sub">укажите дату</span>
+        </div>
+        <div class="input-box">
+          <label class="input-field">
+            <input type="text" placeholder="Участники" readonly>
+            <span class="icon arrow-icon"></span>
+          </label>
+          <span class="input-sub">выберите из списка</span>
+        </div>
+        <button type="submit" class="search-btn white-text">Найти программу</button>
+      </div>
+    </form>
+  </div>
+</section>
