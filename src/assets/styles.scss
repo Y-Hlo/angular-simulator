@@ -1,18 +1,35 @@
-@use './fonts';
-@use './normalize';
+@use './_fonts';
+@use './_normalize';
 
-* {
-  font-family: 'Nunito Sans';
+*, 
+*::before, 
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Nunito Sans', sans-serif;
 }
 
 .container {
   width: 1180px;
 }
 
+button,
+.input-field,
+.input-field input,
+.nav-wrapper a {
+  cursor: pointer;
+}
+
 :root {
   --primary-color: #18121E;
   --white-color: #FDFDFD;
   --secondary-color: #F2BE22;
+  --light-gray-color: #F3F5F4;
+  --btn-green-color: #1A3E3E;
 }
 
 .dark-text {
