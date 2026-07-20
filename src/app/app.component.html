@@ -1,54 +1,174 @@
-<!-- 15. п 1. Верстка шапки и первого блока с макета -->
+<!-- 16. п 8. Искусственная загрузка страницы -->
 
-<header>
-  <div class="header white-text">
-    <div class="container header-container">
-      <div class="logo-wrapper">
-        <img src="/images/company-icon.svg" alt="mountains">
-        <span>{{ companyName }}</span>
+@if (isLoading === true) {
+  <div class="loader-wrapper">
+    <div class="loader-icon"></div>
+  </div>
+} @else {
+
+  <!-- 15. п 1. Верстка шапки и первого блока с макета -->
+
+  <header>
+    <div class="header white-text">
+      <div class="container header-container">
+        <div class="logo-wrapper">
+          <img src="/images/company-icon.svg" alt="Mountains">
+          <span class="company-name">{{ companyName }}</span>
+        </div>
+        <nav class="nav-wrapper">
+          <a>Главная</a>
+          <a>Про гида</a>
+          <a>Программа тура</a>
+          <a>Стоимость</a>
+          <a>Блог</a>
+          <a>Контакты</a>
+        </nav>
+        <button class="consultation-btn" id="consultation-btn">Консультация</button>
       </div>
-      <nav class="nav-wrapper">
-        <a>Главная</a>
-        <a>Про гида</a>
-        <a>Программа тура</a>
-        <a>Стоимость</a>
-        <a>Блог</a>
-        <a>Контакты</a>
-      </nav>
-      <button class="consultation-button">Консультация</button>
+
+      <!-- 16. п 6. Кнопка-переключатель задач в шапке (задачи 4 и 5) -->
+
+      <div class="header-interactive-wrapper">
+        <button id="toggleView" (click)="toggleView()">
+          {{ dateTimeOrCount === true ? 'Показать кликер' : 'Показать дату'}}
+        </button>
+
+        @if (dateTimeOrCount === true) {
+
+          <!-- 16. п 4. Вывод тикающего таймера текущего времени -->
+
+          <div class="header-date">{{ dateTime }}</div>
+        } @else {
+
+          <!-- 16. п 5. Реализация интерактивного счетчика кликов -->
+
+          <div class="header-count">
+            <button id="increase-bnt" (click)="increase()">+</button>
+            {{ count }}
+            <button id="decrease-btn" (click)="decrease()" [disabled]="count === 0">-</button>
+          </div>
+        }
+      
+        <!-- 16. п 7. Реализация live-input с моментальным выводом текста рядом -->
+
+        <input type="text" class="live-input" [(ngModel)]="liveText" name="liveText">
+        <div class="live-output">{{ liveText }}</div>
+      </div>
     </div>
-  </div>
-</header>
-<section class="hero">
-  <div class="container hero-content-wrapper">
-    <div class="container title-wrapper">
-      <h1 class="title-text white-text">Насладись прогулкой в горах <br> с командой единомышленников</h1>
-    </div>  
-    <form class="search-form white-text">
-      <div class="search-form-inner">
-        <div class="input-box">
-          <label class="input-field">
-            <input type="text" placeholder="Локация для тура" readonly>
-            <span class="icon arrow-icon"></span>
-          </label>
-          <span class="input-sub">выберите из списка</span>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-content-wrapper">
+      <div class="container title-wrapper">
+        <h1 class="title-text white-text">Насладись прогулкой в горах <br> с командой единомышленников</h1>
+      </div>  
+      <form class="search-form white-text">
+        <div class="search-form-inner">
+
+          <!-- 16. п 2.2. Двусторонняя привязка данных для инпута и селекта -->
+
+          <div class="input-box">
+            <label class="input-field">
+              <select class="input-text input-select" name="tour" [(ngModel)]="tour">
+                <option value="" disabled selected hidden>Локация для тура</option>
+                <option value="dagestan">Дагестан</option>
+                <option value="chechnya">Чечня</option>
+                <option value="kbr">Кабардино-Балкария</option>
+              </select>
+              <span class="icon arrow-icon"></span>
+            </label>
+            <span class="input-sub">выберите из списка</span>
+          </div>
+          <div class="input-box">
+            <label class="input-field">
+              <input
+              type="text"
+              class="input-text"
+              placeholder="Дата похода"
+              name="date"
+              [(ngModel)]="date"
+              (mouseenter)="$any($event.target).type = 'date'"
+              (mouseleave)="date ? $any($event.target).type = 'date' : $any($event.target).type = 'text'">
+              <span class="icon date-icon"></span>
+            </label>
+            <span class="input-sub">укажите дату</span>
+          </div>
+          <div class="input-box">
+            <label class="input-field">
+              <select class="input-text" name="participants" [(ngModel)]="participants">
+                <option value="" disabled selected hidden>Участники</option>
+                <option value="indiana">Индиана Джонс</option>
+                <option value="predator">Чужой</option>
+                <option value="alien">Хищник</option>
+              </select>
+              <span class="icon arrow-icon"></span>
+            </label>
+            <span class="input-sub">выберите из списка</span>
+          </div>
+
+          <!-- 16. п 2.3. Условие блокировки кнопки отправки формы -->
+
+          <button type="submit" class="search-btn white-text" id="search-btn" [disabled]="tour === '' || date === '' || participants === ''">Найти программу</button>
         </div>
-        <div class="input-box">
-          <label class="input-field">
-            <input type="text" placeholder="Дата похода" readonly>
-            <span class="icon date-icon"></span>
-          </label>
-          <span class="input-sub">укажите дату</span>
-        </div>
-        <div class="input-box">
-          <label class="input-field">
-            <input type="text" placeholder="Участники" readonly>
-            <span class="icon arrow-icon"></span>
-          </label>
-          <span class="input-sub">выберите из списка</span>
-        </div>
-        <button type="submit" class="search-btn white-text">Найти программу</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- 16. п 1. Верстка блоков "Исследуйте все горные массивы..." и "Лучшие программы для тебя" -->
+
+  <section class="about">
+    <div class="container about-wrapper">
+      <div class="about-images-wrapper">
+        <img class="about-img about-img-back" src="/images/about-mountains.png" alt="Mountains">
+        <img class="about-img about-img-front" src="/images/about-forest.png" alt="Forest">
       </div>
-    </form>
-  </div>
-</section>
+      <div class="about-title-wrapper">
+        <div class="about-heading-wrapper">
+          <span class="about-subtitle">о нашем походе</span>
+          <h2 class="about-title">Исследуйте все горные массивы мира вместе с нами</h2>
+        </div>
+        <p class="about-text">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, "consectetur" и занялся его поисками в классической латинской литературе.</p>
+        <button class="about-btn white-text" id="about-btn">Программа тура</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="offer">
+    <div class="container offer-wrapper">
+      <div class="offer-title-wrapper">
+        <div class="offer-heading-wrapper">
+          <span class="offer-subtitle">наше предложение</span>
+          <h2 class="offer-title">Лучшие программы для тебя</h2>
+        </div>
+        <p class="offer-text">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа.</p>
+
+        <!-- 16. п 1.2. Вывод карточек программ с помощью конструкции @for -->
+
+        @for (item of offer; track item.id) {
+          <div class="offer-item-wrapper">
+            <div class="offer-icon-wrapper">
+              <img class="offer-icon" [src]="item.icon" [alt]="item.title">
+            </div>
+            <div class="offer-item-content-wrapper">
+              <h3 class="offer-item-title">{{ item.title }}</h3>
+              <p class="offer-item-text">{{ item.text }}</p>
+            </div>
+          </div>
+        }
+
+        <button class="offer-btn white-text" id="offer-btn">Стоимость программ</button>
+      </div>
+      <div class="offer-images-wrapper">
+        <img class="offer-gallery-img" src="/images/offer-canyon-lake.png" alt="Lake in the canyon">
+        <img class="offer-gallery-img" src="/images/offer-canyon-view.png" alt="View of the canyon">
+        <img class="offer-gallery-img" src="/images/offer-snowmobile.png" alt="Snowmobile in the mountains">
+        <img class="offer-gallery-img" src="/images/offer-mountain-river.png" alt="Mountain river">
+      </div>
+    </div>
+  </section>
+
+  <select name="color" id="color">
+    <option value="red">Красный</option>
+    <option value="blue">Синий</option>
+  </select>
+}
