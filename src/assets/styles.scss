@@ -29,7 +29,7 @@ button,
   --white-color: #FDFDFD;
   --secondary-color: #F2BE22;
   --light-gray-color: #F3F5F4;
-  --btn-green-color: #1A3E3E;
+  --green-color: #1A3E3E;
 }
 
 .dark-text {
@@ -42,6 +42,31 @@ button,
 
 .accent-text {
   color: var(--secondary-color);
+}
+
+.h2-title {
+  font-weight: 800;
+  font-size: 32px;
+  line-height: 120%;
+  color: var(--primary-color);
+}
+
+.text-subtitle {
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 20px;
+  color: var(--secondary-color);
+}
+
+.green-button {
+  border-radius: 4px;
+  background: var(--green-color);
+  border: none;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.012em;
+  color: var(--white-color);
 }
 
 // div {

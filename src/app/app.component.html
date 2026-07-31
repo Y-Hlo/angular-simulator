@@ -12,7 +12,7 @@
     <div class="header white-text">
       <div class="container header-container">
         <div class="logo-wrapper">
-          <img src="/images/company-icon.svg" alt="Mountains">
+          <img src="/images/company-icon.svg" alt="Горы">
           <span class="company-name">{{ companyName }}</span>
         </div>
         <nav class="nav-wrapper">
@@ -23,7 +23,10 @@
           <a>Блог</a>
           <a>Контакты</a>
         </nav>
-        <button class="consultation-btn" id="consultation-btn">Консультация</button>
+
+        <!-- 19. п 3.9. Привязка вызова уведомлений к кнопкам макета -->
+
+        <button class="consultation-btn" id="consultation-btn" (click)="showMessage(MessageType.Success, 'Заявка на консультацию отправлена!')">Консультация</button>
       </div>
 
       <!-- 16. п 6. Кнопка-переключатель задач в шапке (задачи 4 и 5) -->
@@ -108,7 +111,7 @@
 
           <!-- 16. п 2.3. Условие блокировки кнопки отправки формы -->
 
-          <button type="submit" class="search-btn white-text" id="search-btn" [disabled]="tour === '' || date === '' || participants === ''">Найти программу</button>
+          <button type="submit" class="search-btn white-text green-button" id="search-btn" [disabled]="tour === '' || date === '' || participants === ''" (click)="showMessage(MessageType.Info, 'x')">Найти программу</button>
         </div>
       </form>
     </div>
@@ -119,16 +122,16 @@
   <section class="about">
     <div class="container about-wrapper">
       <div class="about-images-wrapper">
-        <img class="about-img about-img-back" src="/images/about-mountains.png" alt="Mountains">
-        <img class="about-img about-img-front" src="/images/about-forest.png" alt="Forest">
+        <img class="about-img about-img-back" src="/images/about-mountains.png" alt="Горы">
+        <img class="about-img about-img-front" src="/images/about-forest.png" alt="Лес">
       </div>
       <div class="about-title-wrapper">
         <div class="about-heading-wrapper">
-          <span class="about-subtitle">о нашем походе</span>
-          <h2 class="about-title">Исследуйте все горные массивы мира вместе с нами</h2>
+          <span class="about-subtitle text-subtitle">о нашем походе</span>
+          <h2 class="about-title h2-title">Исследуйте все горные массивы мира вместе с нами</h2>
         </div>
         <p class="about-text">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, "consectetur" и занялся его поисками в классической латинской литературе.</p>
-        <button class="about-btn white-text" id="about-btn">Программа тура</button>
+        <button class="about-btn white-text green-button" id="about-btn" (click)="showMessage(MessageType.Warn, 'Программа недоступна')">Программа тура</button>
       </div>
     </div>
   </section>
@@ -137,8 +140,8 @@
     <div class="container offer-wrapper">
       <div class="offer-title-wrapper">
         <div class="offer-heading-wrapper">
-          <span class="offer-subtitle">наше предложение</span>
-          <h2 class="offer-title">Лучшие программы для тебя</h2>
+          <span class="offer-subtitle text-subtitle">наше предложение</span>
+          <h2 class="offer-title h2-title">Лучшие программы для тебя</h2>
         </div>
         <p class="offer-text">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа.</p>
 
@@ -147,7 +150,7 @@
         @for (item of offer; track item.id) {
           <div class="offer-item-wrapper">
             <div class="offer-icon-wrapper">
-              <img class="offer-icon" [src]="item.icon" [alt]="item.title">
+              <img class="offer-icon" [src]="item.icon" [alt]="item.alt">
             </div>
             <div class="offer-item-content-wrapper">
               <h3 class="offer-item-title">{{ item.title }}</h3>
@@ -156,19 +159,119 @@
           </div>
         }
 
-        <button class="offer-btn white-text" id="offer-btn">Стоимость программ</button>
+        <button class="offer-btn white-text green-button" id="offer-btn" (click)="showMessage(MessageType.Info, 'Стоимость отправлена на почту')">Стоимость программ</button>
       </div>
       <div class="offer-images-wrapper">
-        <img class="offer-gallery-img" src="/images/offer-canyon-lake.png" alt="Lake in the canyon">
-        <img class="offer-gallery-img" src="/images/offer-canyon-view.png" alt="View of the canyon">
-        <img class="offer-gallery-img" src="/images/offer-snowmobile.png" alt="Snowmobile in the mountains">
-        <img class="offer-gallery-img" src="/images/offer-mountain-river.png" alt="Mountain river">
+        <img class="offer-gallery-img" src="/images/offer-canyon-lake.png" alt="Озеро в каньоне">
+        <img class="offer-gallery-img" src="/images/offer-canyon-view.png" alt="Вид на каньон">
+        <img class="offer-gallery-img" src="/images/offer-snowmobile.png" alt="Снегоход в горах">
+        <img class="offer-gallery-img" src="/images/offer-mountain-river.png" alt="Горная река">
       </div>
     </div>
   </section>
 
-  <select name="color" id="color">
-    <option value="red">Красный</option>
-    <option value="blue">Синий</option>
-  </select>
+  <!-- 19. п 1. Верстка блоков "Популярные направления" и "Блог о путешествиях" -->
+
+  <section class="destinations">
+      <div class="destinations-heading-wrapper">
+        <span class="text-subtitle">по версии отдыхающих</span>
+        <h2 class="h2-title">Популярные направления</h2>
+      </div>
+    <div class="container destinations-images">
+      <div class="destinations-images-card">
+        <img class="destinations-gallery-img" src="/images/destination-lake.png" alt="Озеро возле гор">
+        <div class="destinations-images-rating">
+          <img src="/images/star.svg" alt="Звезда">
+          <span class="">4.9</span>
+        </div>
+        <div class="destinations-images-footer">
+          <div class="destinations-images-info">
+            <h3>Озеро возле гор</h3>
+            <p>романтическое приключение</p>
+          </div>
+          <div class="destinations-images-price">480 $</div>
+        </div>
+      </div>
+      <div class="destinations-images-card">
+        <img class="destinations-gallery-img" src="/images/destination-night.png" alt="Ночь в горах">
+        <div class="destinations-images-rating">
+          <img src="/images/star.svg" alt="Звезда">
+          <span class="">4.5</span>
+        </div>
+        <div class="destinations-images-footer">
+          <div class="destinations-images-info">
+            <h3>Ночь в горах</h3>
+            <p>в компании друзей</p>
+          </div>
+          <div class="destinations-images-price">500 $</div>
+        </div>
+      </div>
+      <div class="destinations-images-card">
+        <img class="destinations-gallery-img" src="/images/destination-stretching.png" alt="Растяжка в горах">
+        <div class="destinations-images-rating">
+          <img src="/images/star.svg" alt="Звезда">
+          <span class="">5.0</span>
+        </div>
+        <div class="destinations-images-footer">
+          <div class="destinations-images-info">
+            <h3>Растяжка в горах</h3>
+            <p>для тех, кто забоится о себе</p>
+          </div>
+          <div class="destinations-images-price">230 $</div>
+        </div>
+      </div>
+    </div>
+    <button class="destinations-btn white-text green-button" id="destinations-btn" (click)="showMessage(MessageType.Success, 'Напрваления получены')">Рейтинг направлений</button>
+  </section>
+
+  <section class="blog">
+    <div class="blog-heading-wrapper">
+      <span class="text-subtitle">делимся впечатлениями</span>
+      <h2 class="h2-title">Блог о путешествиях</h2>
+    </div>
+    <div class="container blog-wrapper">
+
+      @for (item of blog; track item.id) {
+        <div class="blog-card">
+        <img class="blog-card-img" [src]="item.image" [alt]="item.alt">
+        <div class="blog-card-content">
+          <h3 class="blog-card-title">{{ item.title }}</h3>
+          <p class="blog-card-text">{{ item.text }}</p>
+          <div class="blog-card-footer">
+            <p class="blog-card-footer-date">{{ item.date }}</p>
+            <a class="blog-card-footer-link" [href]="item.link">{{ item.linkText }}</a>
+          </div>
+        </div>
+      </div>
+      }
+
+    </div>
+      <button class="blog-btn white-text green-button" id="offer-btn" (click)="showMessage(MessageType.Error, 'Материалы недоступны')">Другие материалы</button>
+  </section>
+
+  <!-- 19. п 3.10. Фиксированный контейнер для всплывающих сообщений -->
+
+  <div class="msg-wrapper">
+    @for (item of messageService.messages; track item.id) {
+      <div [ngTemplateOutlet]="msgCard" [ngTemplateOutletContext]="{ $implicit: item }"></div>
+    }
+  </div>
+
+  <!-- 19. п 3.11. Использование ng-template с объектом сообщения -->
+
+  <ng-template #msgCard let-message>
+    <div class="msg-card">
+      <div class="msg-card-ico">
+        <img src="/images/msg-ico.svg" alt="Значок конверта">
+      </div>
+      <div class="msg-card-text">
+        <h3>{{ message.type | titlecase }}</h3>
+        <p>{{ message.text }}</p>
+      </div>
+      <button class="msg-card-close-btn" (click)="messageService.closeMessage(message.id)">
+        <img src="/images/close-ico.svg" alt="Значок закрытия">
+      </button>
+    </div>
+  </ng-template>
+
 }
