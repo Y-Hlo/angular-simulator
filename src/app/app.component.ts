@@ -9,12 +9,12 @@ import { MessageType } from '../enums/MessageType';
 import { IMessage } from '../interfaces/IMessage';
 import { MessageService } from '../message.service';
 import { NgTemplateOutlet } from '@angular/common';
-import { TitleCasePipe, NgClass } from '@angular/common';
+import { TitleCasePipe } from '@angular/common';
 import { LocalStorageService } from '../local-storage.service';
 
 @Component({
   selector: 'app-root',
-  imports: [FormsModule, NgTemplateOutlet, TitleCasePipe, NgClass],
+  imports: [FormsModule, NgTemplateOutlet, TitleCasePipe],
   providers: [MessageService, LocalStorageService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
