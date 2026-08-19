@@ -12,7 +12,7 @@
     <div class="header white-text">
       <div class="container header-container">
         <div class="logo-wrapper">
-          <img src="/images/company-icon.svg" alt="Горы">
+          <img src="/images/icons/company.svg" alt="Горы">
           <span class="company-name">{{ companyName }}</span>
         </div>
         <nav class="nav-wrapper">
@@ -173,15 +173,15 @@
   <!-- 19. п 1. Верстка блоков "Популярные направления" и "Блог о путешествиях" -->
 
   <section class="destinations">
-      <div class="destinations-heading-wrapper">
-        <span class="text-subtitle">по версии отдыхающих</span>
-        <h2 class="h2-title">Популярные направления</h2>
-      </div>
+    <div class="destinations-heading-wrapper">
+      <span class="text-subtitle">по версии отдыхающих</span>
+      <h2 class="h2-title">Популярные направления</h2>
+    </div>
     <div class="container destinations-images">
       <div class="destinations-images-card">
         <img class="destinations-gallery-img" src="/images/destination-lake.png" alt="Озеро возле гор">
         <div class="destinations-images-rating">
-          <img src="/images/star.svg" alt="Звезда">
+          <img src="/images/icons/star.svg" alt="Звезда">
           <span class="">4.9</span>
         </div>
         <div class="destinations-images-footer">
@@ -195,7 +195,7 @@
       <div class="destinations-images-card">
         <img class="destinations-gallery-img" src="/images/destination-night.png" alt="Ночь в горах">
         <div class="destinations-images-rating">
-          <img src="/images/star.svg" alt="Звезда">
+          <img src="/images/icons/star.svg" alt="Звезда">
           <span class="">4.5</span>
         </div>
         <div class="destinations-images-footer">
@@ -209,7 +209,7 @@
       <div class="destinations-images-card">
         <img class="destinations-gallery-img" src="/images/destination-stretching.png" alt="Растяжка в горах">
         <div class="destinations-images-rating">
-          <img src="/images/star.svg" alt="Звезда">
+          <img src="/images/icons/star.svg" alt="Звезда">
           <span class="">5.0</span>
         </div>
         <div class="destinations-images-footer">
@@ -230,7 +230,6 @@
       <h2 class="h2-title">Блог о путешествиях</h2>
     </div>
     <div class="container blog-wrapper">
-
       @for (item of blog; track item.id) {
         <div class="blog-card">
         <img class="blog-card-img" [src]="item.image" [alt]="item.alt">
@@ -244,7 +243,6 @@
         </div>
       </div>
       }
-
     </div>
       <button class="blog-btn white-text green-button" id="offer-btn" (click)="showMessage(MessageType.Error, 'Материалы недоступны')">Другие материалы</button>
   </section>
@@ -261,17 +259,108 @@
 
   <ng-template #msgCard let-message>
     <div class="msg-card">
-      <div class="msg-card-ico">
-        <img src="/images/msg-ico.svg" alt="Значок конверта">
+      <div class="msg-card-icon">
+        <img src="/images/icons/msg.svg" alt="Значок конверта">
       </div>
       <div class="msg-card-text">
         <h3>{{ message.type | titlecase }}</h3>
         <p>{{ message.text }}</p>
       </div>
       <button class="msg-card-close-btn" (click)="messageService.closeMessage(message.id)">
-        <img src="/images/close-ico.svg" alt="Значок закрытия">
+        <img src="/images/icons/close.svg" alt="Значок закрытия">
       </button>
     </div>
   </ng-template>
+
+  <!-- 20. п 1. Верстка блоков "Делимся впечатлениями" и футера -->
+
+  <section class="impressions">
+    <div class="impressions-heading-wrapper">
+      <span class="text-subtitle">фото-отчет</span>
+      <h2 class="h2-title">Делимся впечатлениями</h2>
+    </div>
+    <div class="container impressions-images">
+      <img src="/images/hot-air-balloon.png" alt="Вид на воздушные шары">
+      <img src="/images/travel-map.png" alt="Карта путешественника">
+      <img src="/images/dubai.png" alt="Вид на здание и берег океана">
+      <img src="/images/tropical-beach.png" alt="Вид на бирюзовую воду и песчаный пляж">
+      <img src="/images/canyon.png" alt="Вид на каньон">
+      <img src="/images/notebook.png" alt="Винтажный блокнот">
+    </div>
+    <button class="impressions-btn white-text green-button" id="impressions-btn" (click)="showMessage(MessageType.Success, 'Напрваления получены')">Наш pinterest</button>
+  </section>
+
+  <footer class="footer">
+
+    <div class="container footer-subscribe">
+      <div class="title">
+        <span>актуально</span>
+        <h2>Получайте полезные рассылки о путешествиях</h2>
+      </div>
+      
+      <div class="subscribe">
+        <div class="subscribe-action">
+          <form class="subscribe-action-form">
+            <p class="subscribe-email-text">Введите e-mail адрес</p>
+            <input class="subscribe-form-input" id="subscribe-form-input" type="email" name="email" id="email" placeholder="name@domain.com">
+          </form>
+          <button class="subscribe-form-btn green-button" id="subscribe-form-btn">Подписаться на новости</button>
+        </div>
+        <p class="subscribe-text">подписываясь на новости, вы автоматически соглашаетесь с 
+          <a href="#">условиями обработки персональных данных</a> и 
+          <a href="#">правилами рекламных рассылок</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="footer-main white-text">
+      <div class="container footer-main-wrapper">
+
+        <div class="company-info">
+          <h3 class="footer-main-title">Компания «РумТибет»</h3>
+          <p class="company-info-text">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney.</p>
+          <div class="company-info-contacts">
+            <a href="mailto:info@domain.com" class="company-email">info@domain.com</a>
+            <a href="tel:+71234567890" class="company-tel">+7 (123) 456-78-90</a>
+          </div>
+          <div class="company-info-socials">
+            <a href="#"><img src="/images/icons/tg.svg" alt="Telegram"></a>
+            <a href="#"><img src="/images/icons/vk.svg" alt="ВКонтакте"></a>
+            <a href="#"><img src="/images/icons/pinterest.svg" alt="Pinterest"></a>
+            <a href="#"><img src="/images/icons/skype.svg" alt="Skype"></a>
+          </div>
+        </div>
+
+        <div class="services">
+          <h3 class="footer-main-title">Наши услуги</h3>
+          <ul>
+            <li><a href="#">Прогулки в горы летом</a></li>
+            <li><a href="#">Зимние походы в горы</a></li>
+            <li><a href="#">Посещение храмов в горах</a></li>
+            <li><a href="#">Экстремальные виды туризма</a></li>
+            <li><a href="#">Походы в джунглях Амазонии</a></li>
+            <li><a href="#">Поездка в Африку</a></li>
+          </ul>
+        </div>
+
+        <div class="Important">
+          <h3  class="footer-main-title">Важно для путешествий</h3>
+          <ul>
+            <li><a href="#">Как собрать в долгий поход?</a></li>
+            <li><a href="#">Жизненно важные предметы для похода</a></li>
+            <li><a href="#">Медицинская страховка, гарантии безопасности</a></li>
+            <li><a href="#">Если вы врач - загляните сюда</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-wrapper">
+        <span>ИП Константинопольский К.К., 2023</span>
+        <span>Политика обработки персональных данных</span>
+      </div>
+    </div>
+  </footer>
 
 }
