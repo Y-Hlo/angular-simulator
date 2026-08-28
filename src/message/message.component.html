@@ -1,0 +1,26 @@
+<!-- 20. п 3.2. Реализация отображения сообщений в message компоненте -->
+
+<!-- 19. п 3.10. Фиксированный контейнер для всплывающих сообщений -->
+
+<div class="msg-wrapper">
+  @for (item of messageService.messages; track item.id) {
+    <div [ngTemplateOutlet]="msgCard" [ngTemplateOutletContext]="{ $implicit: item }"></div>
+  }
+</div>
+
+<!-- 19. п 3.11. Использование ng-template с объектом сообщения -->
+
+<ng-template #msgCard let-message>
+  <div class="msg-card">
+    <div class="msg-card-icon">
+      <img src="/images/icons/msg.svg" alt="Значок конверта">
+    </div>
+    <div class="msg-card-text">
+      <h3>{{ message.type | titlecase }}</h3>
+      <p>{{ message.text }}</p>
+    </div>
+    <button class="msg-card-close-btn" (click)="messageService.closeMessage(message.id)">
+      <img src="/images/icons/close.svg" alt="Значок закрытия">
+    </button>
+  </div>
+</ng-template>
